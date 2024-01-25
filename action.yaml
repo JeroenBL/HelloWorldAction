@@ -1,0 +1,16 @@
+name: 'HelloWorldAction'
+description: 'HelloWorldDemoAction'
+inputs:
+  UserName: 
+    description:  'Your GitHub UserName'
+    required: false
+outputs:
+  message:
+    description: "A simple output message"
+    value: "${{ steps.helloworldaction.outputs.message }}"
+runs:
+  using: "composite"
+  steps:
+    - id: helloworldaction
+      run: ${{ github.action_path }}/helloWorld.ps1 -username ${{ inputs.username }} 
+      shell: pwsh
